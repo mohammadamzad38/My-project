@@ -1,23 +1,42 @@
-
+import { useState } from "react";
+import Link from "./Link/Link";
+import { MdMenu } from "react-icons/md";
+import { GrClose } from "react-icons/gr";
 
 const NavBar = () => {
-    const routes = [
-        { id: 1, name: "Home", path: "/home" },
-        { id: 2, name: "About", path: "/about" },
-        { id: 3, name: "Contact", path: "/contact" },
-        { id: 4, name: "Services", path: "/services" },
-        { id: 5, name: "Profile", path: "/profile" }
-      ];
-          
-    return (
-        <nav>
-            <ul className="flex">
-                {
-                    routes.map(route => <li  key={routes.id}><a href={route.path}>{route.name}</a></li>)
-                }
-            </ul>
-        </nav>
-    );
+  const [open, setOpen] = useState(false);
+  const routes = [
+    { id: 1, name: "Home", path: "/home" },
+    { id: 2, name: "About", path: "/about" },
+    { id: 3, name: "Contact", path: "/contact" },
+    { id: 4, name: "Services", path: "/services" },
+    { id: 5, name: "Profile", path: "/profile" },
+  ];
+
+  return (
+    <nav>
+      <div
+        className="md:flex bg-emerald-400 p-6 "
+        onClick={() => setOpen(!open)}
+      >
+        {open === true ? (
+          <GrClose></GrClose>
+        ) : (
+          <MdMenu className="text-2xl md:hidden"></MdMenu>
+        )}
+      </div>
+
+      <ul
+        className={`md:flex bg-emerald-100 px-6 absolute md:static rounded-md  ${
+          open ? "top-16" : "-top-80"
+        }`}
+      >
+        {routes.map((route) => (
+          <Link key={routes.id} route={route}></Link>
+        ))}
+      </ul>
+    </nav>
+  );
 };
 
 export default NavBar;
