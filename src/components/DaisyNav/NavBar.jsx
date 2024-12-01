@@ -24,17 +24,17 @@ const NavBar = () => {
         ) : (
           <MdMenu className="text-2xl md:hidden"></MdMenu>
         )}
-      </div>
 
-      <ul
-        className={`md:flex bg-emerald-100 px-6 absolute md:static rounded-md  ${
-          open ? "top-16" : "-top-80"
-        }`}
-      >
-        {routes.map((route) => (
-          <Link key={routes.id} route={route}></Link>
-        ))}
-      </ul>
+        <ul
+          className={`md:flex bg-emerald-100 p-3 gap-6 ml-1 absolute md:static rounded-md  ${
+            open ? "top-16" : "-top-80"
+          }`}
+        >
+          {routes.map((route) => (
+            <Link key={routes.id} route={route}></Link>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };
